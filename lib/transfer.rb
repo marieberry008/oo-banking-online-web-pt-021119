@@ -20,9 +20,9 @@ def valid?
 end
 
 def execute_transaction
-    if @sender.balance > @transfer_amount && @status == "pending"
-      @sender.balance -= @transfer_amount
-      @receiver.balance += @transfer_amount
+    if @sender.balance > @amount && @status == "pending"
+      @sender.balance -= @amount
+      @receiver.balance += @amount
       @status = "complete"
     else
       @status = "rejected"
@@ -32,8 +32,8 @@ end
 
 def reverse_transfer
     if @status == "complete"
-      @sender.balance += @transfer_amount
-      @receiver.balance -= @transfer_amount
+      @sender.balance += @amount
+      @receiver.balance -= @amount
       @status = "reversed"
     end
 end
